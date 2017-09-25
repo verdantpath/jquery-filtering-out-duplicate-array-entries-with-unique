@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>JQuery Combining Arrays With Merge</title>
+
+</head>
+<body>
+<ul>
+  <li class="animals">Rabbit</li>
+  <li class="animals">Dog</li>
+  <li class="animals">Cat</li>
+  <li class="animals">Pig</li>
+  <li class="animals">Shetland</li>
+</ul>
+
+<ul>
+  <li class="horses">Arabian</li>
+  <li class="horses">Shetland</li>
+  <li class="horses">Shetland</li>
+  <li class="horses">Clydesdale</li>
+</ul>
+
+<ul id="animals">
+
+</ul>
+
+<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+<script type="text/Javascript">
+(function($) {
+  $(document).ready(function() {
+    var animals = $('li.animals').get();
+    var horses = $('li.horses').get();
+    var tmp = $.merge( animals, horses );
+    // tmp = $.unique( tmp );
+    $('#animals').append( $(tmp).clone() );
+    $('#animals li').each(function(){
+      if($(this).parent().length) {
+        $("#animals li:contains('" + $(this).html() + "')").not(this).remove();
+      }
+    });
+  });
+})(jQuery);
+
+</script>
+</body>
+</html>
